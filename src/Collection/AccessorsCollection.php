@@ -7,8 +7,6 @@
  */
 declare(strict_types=1);
 
-
-
 namespace Rds\Hydrator\Collection;
 
 use Rds\Hydrator\Mapper\AccessorInterface;

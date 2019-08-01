@@ -7,8 +7,6 @@
  */
 declare(strict_types=1);
 
-
-
 namespace Rds\Hydrator\Loader;
 
 use Symfony\Component\Yaml\Yaml;

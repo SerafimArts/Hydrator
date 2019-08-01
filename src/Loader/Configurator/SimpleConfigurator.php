@@ -7,8 +7,6 @@
  */
 declare(strict_types=1);
 
-
-
 namespace Rds\Hydrator\Loader\Configurator;
 
 use JsonSchema\Validator;
