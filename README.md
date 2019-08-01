@@ -59,8 +59,6 @@ In order to access Hydrator classes make sure to include
 `vendor/autoload.php` in your file.
 
 ```php
-<?php 
-
 require __DIR__ . '/vendor/autoload.php';
 ```
 
