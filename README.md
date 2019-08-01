@@ -32,4 +32,59 @@ Hydrator
 
 ## Introduction
 
-TODO
+Hydrator library provides a simple way for converting data arrays into specific 
+objects of the domain and vice versa.
+
+## Requirements
+
+- PHP 7.2+
+- ext-json
+
+### Configuration Loaders
+
+- `symfony/yaml` for `Rds\Hydrator\Loader\YamlLoader`
+- `ext-json` for `Rds\Hydrator\Loader\JsonLoader`
+- `railt/json` for `Rds\Hydrator\Loader\Json5Loader`
+
+## Installation
+
+Hydrator is available as composer repository and can be installed using the 
+following command in the root of your project:
+
+```bash
+$ composer require rds/hydrator
+```
+
+In order to access Hydrator classes make sure to include 
+`vendor/autoload.php` in your file.
+
+```php
+<?php 
+
+require __DIR__ . '/vendor/autoload.php';
+```
+
+## Documentation
+
+- Getting Started
+    - [Quick Start](./docs/quick-start.md)
+    - [License](./LICENSE.md)
+    - [Changelog](./CHANGELOG.md)
+- Configuration
+    - Loaders
+        - Yaml
+        - Json
+        - Json5
+        - PHP
+        - XML
+    - Configurators
+        - Simple
+- Mappers
+    - Accessors
+    - Mutators
+    - Custom
+- Events
+    - Hydration Events
+    - Serialization Events
+
+
