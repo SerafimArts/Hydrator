@@ -1,0 +1,50 @@
+{
+    "$id": "file:///config.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hydrator Configuration",
+    "type": "object",
+    "patternProperties": {
+        "^(\\\\)?[a-zA-Z_\\x80-\\xff][a-zA-Z0-9_\\x80-\\xff]*(\\\\[a-zA-Z_\\x80-\\xff][a-zA-Z0-9_\\x80-\\xff]*)*$": {
+            "$ref": "#/definitions/definition"
+        }
+    },
+    "definitions": {
+        "field": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-zA-Z_\\x80-\\xff][a-zA-Z0-9_\\x80-\\xff]*$": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z_\\x80-\\xff][a-zA-Z0-9_\\x80-\\xff]*$"
+                }
+            }
+        },
+        "nested": {
+            "type": "object",
+            "patternProperties": {
+                "^[a-zA-Z_\\x80-\\xff][a-zA-Z0-9_\\x80-\\xff]*$": {
+                    "type": "string",
+                    "pattern": "^[a-zA-Z_\\x80-\\xff][a-zA-Z0-9_\\x80-\\xff\\\\.]*$"
+                }
+            }
+        },
+        "embedded": {
+            "type": "object"
+        },
+        "definition": {
+            "type": "object",
+            "properties": {
+                "fields": {
+                    "$ref": "#/definitions/field"
+                },
+                "nested": {
+                    "$ref": "#/definitions/nested"
+                },
+                "embedded": {
+                    "$ref": "#/definitions/embedded"
+                }
+            },
+            "additionalProperties": false
+        }
+    },
+    "additionalProperties": false
+}

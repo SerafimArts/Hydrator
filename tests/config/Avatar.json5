@@ -1,0 +1,10 @@
+{
+    "Rds\\Hydrator\\Tests\\Models\\Avatar": {
+        fields: {
+            url: "link"
+        },
+        nested: {
+            example: "some.any"
+        }
+    }
+}

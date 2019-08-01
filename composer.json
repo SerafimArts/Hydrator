@@ -1,0 +1,53 @@
+{
+    "name": "rds/hydrator",
+    "type": "library",
+    "description": "Simple hydrator library",
+    "keywords": [
+        "hydrator",
+        "performance",
+        "array conversion",
+        "object conversion",
+        "serializer"
+    ],
+    "homepage": "https://github.com/rds/hydrator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kirill Nesmeyanov",
+            "email": "nesk@xakep.ru",
+            "homepage": "https://serafimarts.ru/"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "justinrainbow/json-schema": "^5.0"
+    },
+    "require-dev": {
+        "brianium/paratest": "^3.0",
+        "symfony/yaml": "~4.0",
+        "railt/json": "1.4.x-dev@dev",
+        "phpunit/phpunit": "^8.0",
+        "symfony/var-dumper": "~4.3"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Rds\\Hydrator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rds\\Hydrator\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "support": {
+        "email": "k.nesmeyanov@rambler-co.ru",
+        "issues": "https://github.com/rds/hydrator/issues",
+        "source": "https://github.com/rds/hydrator",
+        "docs": "https://github.com/rds/hydrator/docs"
+    }
+}

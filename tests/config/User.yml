@@ -1,0 +1,6 @@
+Rds\Hydrator\Tests\Models\User:
+    fields:
+        id: id
+        login: username
+    embedded:
+        avatar: Rds\Hydrator\Tests\Models\Avatar
