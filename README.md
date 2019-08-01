@@ -6,10 +6,10 @@ Hydrator
         <img src="https://travis-ci.org/SerafimArts/Hydrator.svg?branch=master" alt="Travis CI" />
     </a>
     <a href="https://codeclimate.com/github/SerafimArts/Hydrator/test_coverage">
-        <img src="https://api.codeclimate.com/v1/badges/90ee68ef959f72fe7bf6/test_coverage" />
+        <img src="https://api.codeclimate.com/v1/badges/ee98e53136071f35e4d5/test_coverage" />
     </a>
     <a href="https://codeclimate.com/github/SerafimArts/Hydrator/maintainability">
-        <img src="https://api.codeclimate.com/v1/badges/90ee68ef959f72fe7bf6/maintainability" />
+        <img src="https://api.codeclimate.com/v1/badges/ee98e53136071f35e4d5/maintainability" />
     </a>
 </p>
 <p align="center">
