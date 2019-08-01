@@ -7,14 +7,21 @@
  */
 declare(strict_types=1);
 
+/*
+ * This file is part of Hydrator package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Rds\Hydrator\Tests;
 
 use Rds\Hydrator\Factory;
 use PHPUnit\Framework\Exception;
 use Rds\Hydrator\FactoryInterface;
-use Rds\Hydrator\Loader\YamlLoader;
-use Rds\Hydrator\Loader\JsonLoader;
 use Rds\Hydrator\HydratorInterface;
+use Rds\Hydrator\Loader\JsonLoader;
+use Rds\Hydrator\Loader\YamlLoader;
 use Rds\Hydrator\Tests\Models\User;
 use Rds\Hydrator\Loader\Json5Loader;
 use PHPUnit\Framework\ExpectationFailedException;
