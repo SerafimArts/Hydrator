@@ -7,6 +7,13 @@
  */
 declare(strict_types=1);
 
+/*
+ * This file is part of Hydrator package.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Rds\Hydrator\Mapper;
 
 /**
@@ -88,7 +95,7 @@ class NestedProperty extends Property
     {
         $this->assertPropertyExists($instance, $this->property);
 
-        $this->lookup($data, function ($data) use ($instance) {
+        $this->lookup($data, function ($data) use ($instance): void {
             $this->mutator->call($instance, $data);
         });
     }
