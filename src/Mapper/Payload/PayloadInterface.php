@@ -33,7 +33,7 @@ interface PayloadInterface
      * @param mixed $value
      * @return PayloadInterface
      */
-    public function with(string $key, $value): PayloadInterface;
+    public function with(string $key, $value): self;
 
     /**
      * @return array

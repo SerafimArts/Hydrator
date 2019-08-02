@@ -12,7 +12,6 @@ namespace Rds\Hydrator\Loader;
 use Phplrt\Io\File;
 use Railt\Json\Json5;
 use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Exception\LoaderException;
 use Rds\Hydrator\Exception\UnsupportedLoaderException;
 use Rds\Hydrator\Exception\LoaderConfigurationException;
 use Rds\Hydrator\Loader\Configurator\ConfiguratorInterface;

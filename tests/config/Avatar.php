@@ -12,7 +12,7 @@ use Rds\Hydrator\Tests\Models\Avatar;
 return [
     Avatar::class => [
         'fields' => [
-            'url' => 'link',
+            'url'     => 'link',
             'example' => 'some.any',
         ],
     ],

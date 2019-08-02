@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator\Loader\Config;
 
-use Rds\Hydrator\HydratorInterface;
 use Rds\Hydrator\Mapper\Attribute;
+use Rds\Hydrator\HydratorInterface;
 
 /**
  * Class AttributesConfig
@@ -46,4 +46,3 @@ class AttributesConfig extends Config
         }
     }
 }
-

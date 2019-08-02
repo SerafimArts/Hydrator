@@ -59,7 +59,7 @@ class Property implements AccessorInterface, MutatorInterface
      */
     public function write(object $instance, PayloadInterface $payload, object $context = null): void
     {
-        $payload->get($this->key, function ($value) use ($instance) {
+        $payload->get($this->key, function ($value) use ($instance): void {
             $this->mutate($instance, $this->property, $value);
         });
     }

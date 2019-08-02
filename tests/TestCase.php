@@ -11,13 +11,9 @@ namespace Rds\Hydrator\Tests;
 
 use Rds\Hydrator\Loader\PhpLoader;
 use Rds\Hydrator\Loader\JsonLoader;
-use Rds\Hydrator\Loader\YamlLoader;
 use Rds\Hydrator\Loader\NeonLoader;
-use Rds\Hydrator\Tests\Models\User;
+use Rds\Hydrator\Loader\YamlLoader;
 use Rds\Hydrator\Loader\Json5Loader;
-use Rds\Hydrator\Event\Instantiated;
-use Rds\Hydrator\Tests\Models\Avatar;
-use Rds\Hydrator\Event\EventInterface;
 use Rds\Hydrator\Loader\LoaderInterface;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -63,11 +59,12 @@ abstract class TestCase extends BaseTestCase
     /**
      * @param object $object
      * @param string $property
+     * @param mixed $value
      * @return mixed
      */
     protected function mutate(object $object, string $property, $value)
     {
-        return (function ($value) use ($property) {
+        return (function ($value) use ($property): void {
             $this->$property = $value;
         })->call($object, $value);
     }

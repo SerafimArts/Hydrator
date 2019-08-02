@@ -47,4 +47,3 @@ class CustomMapperConfig extends Config
         }
     }
 }
-

@@ -14,5 +14,4 @@ namespace Rds\Hydrator\Event;
  */
 class Serialized extends Event
 {
-
 }

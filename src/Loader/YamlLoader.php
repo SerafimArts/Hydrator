@@ -11,7 +11,6 @@ namespace Rds\Hydrator\Loader;
 
 use Symfony\Component\Yaml\Yaml;
 use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Exception\LoaderException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Rds\Hydrator\Exception\UnsupportedLoaderException;
 use Rds\Hydrator\Exception\LoaderConfigurationException;

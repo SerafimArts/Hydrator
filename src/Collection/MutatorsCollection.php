@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Rds\Hydrator\Collection;
 
 use Rds\Hydrator\Mapper\MutatorInterface;
-use Rds\Hydrator\Mapper\Payload\NestedPayload;
 use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**

@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Rds\Hydrator\Loader;
 
 use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Exception\LoaderException;
 use Rds\Hydrator\Exception\UnsupportedLoaderException;
 use Rds\Hydrator\Exception\LoaderConfigurationException;
 use Rds\Hydrator\Loader\Configurator\ConfiguratorInterface;

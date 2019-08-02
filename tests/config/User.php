@@ -7,7 +7,6 @@
  */
 declare(strict_types=1);
 
-use Rds\Hydrator\Mapper\Attribute;
 use Rds\Hydrator\Tests\Models\User;
 use Rds\Hydrator\Tests\Models\Avatar;
 
