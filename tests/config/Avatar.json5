@@ -1,9 +1,7 @@
 {
-    "Rds\\Hydrator\\Tests\\Models\\Avatar": {
+    'Rds\\Hydrator\\Tests\\Models\\Avatar': {
         fields: {
-            url: "link"
-        },
-        nested: {
+            url: "link",
             example: "some.any"
         }
     }

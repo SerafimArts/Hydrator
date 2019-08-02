@@ -1,0 +1,4 @@
+Rds\Hydrator\Tests\Models\Avatar:
+    fields:
+        url: link
+        example: some.any

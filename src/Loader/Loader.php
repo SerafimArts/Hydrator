@@ -25,6 +25,16 @@ abstract class Loader implements LoaderInterface
     protected const ERROR_UNSUPPORTED_LOADER = '%s loader is not supported. Make sure that "%s" is installed';
 
     /**
+     * @var string
+     */
+    protected const ERROR_NOT_READABLE = 'Configuration file "%s" not readable';
+
+    /**
+     * @var string
+     */
+    protected const ERROR_READING = 'Configuration "%s" loading error: %s';
+
+    /**
      * @var array|string[]
      */
     private $directories = [];
@@ -126,5 +136,27 @@ abstract class Loader implements LoaderInterface
     private function normalizeNamespace(string $namespace): string
     {
         return \trim($namespace, '\\');
+    }
+
+    /**
+     * @param string $pathname
+     * @return string
+     */
+    protected function read(string $pathname): string
+    {
+        $this->assertIsReadable($pathname);
+
+        return (string)@\file_get_contents($pathname);
+    }
+
+    /**
+     * @param string $pathname
+     * @return void
+     */
+    protected function assertIsReadable(string $pathname): void
+    {
+        if (! \is_readable($pathname)) {
+            throw new LoaderException(\sprintf(self::ERROR_NOT_READABLE, $pathname));
+        }
     }
 }

@@ -20,14 +20,25 @@
     ],
     "require": {
         "php": "^7.2",
+        "psr/simple-cache": "~1.0",
+        "psr/event-dispatcher": "~1.0",
         "justinrainbow/json-schema": "^5.0"
     },
     "require-dev": {
         "brianium/paratest": "^3.0",
-        "symfony/yaml": "~4.0",
-        "railt/json": "1.4.x-dev@dev",
+        "illuminate/support": "~5.5",
+        "nette/neon": "~3.0",
         "phpunit/phpunit": "^8.0",
-        "symfony/var-dumper": "~4.3"
+        "railt/json": "1.4.x-dev@dev",
+        "symfony/event-dispatcher": "~4.0",
+        "symfony/var-dumper": "~4.3",
+        "symfony/yaml": "~4.0"
+    },
+    "suggest": {
+        "nette/neon": "Needed to support *.neon configuration loader",
+        "railt/json": "Needed to support *.json5 configuration loader",
+        "symfony/event-dispatcher": "PSR-14 Event Dispatcher Implementation",
+        "symfony/yaml": "Needed to support *.yaml configuration loader"
     },
     "config": {
         "sort-packages": true

@@ -9,23 +9,21 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator\Loader;
 
-use Phplrt\Io\File;
-use Railt\Json\Json5;
+use Nette\Neon\Neon;
 use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Exception\LoaderException;
 use Rds\Hydrator\Exception\UnsupportedLoaderException;
 use Rds\Hydrator\Exception\LoaderConfigurationException;
 use Rds\Hydrator\Loader\Configurator\ConfiguratorInterface;
 
 /**
- * Class Json5Loader
+ * Class NeonLoader
  */
-class Json5Loader extends Loader
+class NeonLoader extends Loader
 {
     /**
      * @var string
      */
-    public const DEFAULT_EXTENSION = '.json5';
+    public const DEFAULT_EXTENSION = '.neon';
 
     /**
      * YamlLoader constructor.
@@ -45,9 +43,9 @@ class Json5Loader extends Loader
      */
     public function load(ConfiguratorInterface $config, string $class): ?iterable
     {
-        return $this->resolve($config, $class, static function (string $pathname): array {
+        return $this->resolve($config, $class, function (string $pathname): array {
             try {
-                return Json5::read(File::fromPathname($pathname), 1);
+                return (array)Neon::decode($this->read($pathname));
             } catch (\Throwable $e) {
                 $message = \sprintf(self::ERROR_READING, $pathname, $e->getMessage());
                 throw new LoaderConfigurationException($message);
@@ -60,8 +58,8 @@ class Json5Loader extends Loader
      */
     protected function assertIsSupported(): void
     {
-        if (! \class_exists(Json5::class)) {
-            $message = \sprintf(self::ERROR_UNSUPPORTED_LOADER, static::class, 'railt/json');
+        if (! \class_exists(Neon::class)) {
+            $message = \sprintf(self::ERROR_UNSUPPORTED_LOADER, static::class, 'nette/neon');
 
             throw new UnsupportedLoaderException($message);
         }

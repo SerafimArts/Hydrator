@@ -14,6 +14,7 @@ use Rds\Hydrator\HydratorInterface;
 use Rds\Hydrator\Exception\LoaderException;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Rds\Hydrator\Exception\UnsupportedLoaderException;
+use Rds\Hydrator\Exception\LoaderConfigurationException;
 use Rds\Hydrator\Loader\Configurator\ConfiguratorInterface;
 
 /**
@@ -48,7 +49,8 @@ class YamlLoader extends Loader
             try {
                 return Yaml::parseFile($pathname);
             } catch (ParseException $e) {
-                throw new LoaderException($e->getMessage(), $e->getCode(), $e);
+                $message = \sprintf(self::ERROR_READING, $pathname, $e->getMessage());
+                throw new LoaderConfigurationException($message);
             }
         });
     }

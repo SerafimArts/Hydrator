@@ -19,4 +19,10 @@ interface FactoryInterface
      * @return HydratorInterface
      */
     public function create(string $class): HydratorInterface;
+
+    /**
+     * @param string $class
+     * @return HydratorInterface
+     */
+    public function new(string $class): HydratorInterface;
 }

@@ -9,23 +9,19 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator\Loader;
 
-use Phplrt\Io\File;
-use Railt\Json\Json5;
 use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Exception\LoaderException;
-use Rds\Hydrator\Exception\UnsupportedLoaderException;
 use Rds\Hydrator\Exception\LoaderConfigurationException;
 use Rds\Hydrator\Loader\Configurator\ConfiguratorInterface;
 
 /**
- * Class Json5Loader
+ * Class PhpLoader
  */
-class Json5Loader extends Loader
+class PhpLoader extends Loader
 {
     /**
      * @var string
      */
-    public const DEFAULT_EXTENSION = '.json5';
+    public const DEFAULT_EXTENSION = '.php';
 
     /**
      * YamlLoader constructor.
@@ -45,25 +41,28 @@ class Json5Loader extends Loader
      */
     public function load(ConfiguratorInterface $config, string $class): ?iterable
     {
-        return $this->resolve($config, $class, static function (string $pathname): array {
-            try {
-                return Json5::read(File::fromPathname($pathname), 1);
-            } catch (\Throwable $e) {
-                $message = \sprintf(self::ERROR_READING, $pathname, $e->getMessage());
-                throw new LoaderConfigurationException($message);
-            }
+        return $this->resolve($config, $class, function (string $pathname): array {
+            return $this->include($pathname);
         });
     }
 
     /**
-     * @return void
+     * @param string $pathname
+     * @return array
      */
-    protected function assertIsSupported(): void
+    private function include(string $pathname): array
     {
-        if (! \class_exists(Json5::class)) {
-            $message = \sprintf(self::ERROR_UNSUPPORTED_LOADER, static::class, 'railt/json');
+        $this->assertIsReadable($pathname);
 
-            throw new UnsupportedLoaderException($message);
+        \ob_start();
+        try {
+            $data = require $pathname;
+        } catch (\Throwable $e) {
+            $message = \sprintf(self::ERROR_READING, $pathname, $e->getMessage());
+            throw new LoaderConfigurationException($message);
         }
+        \ob_end_clean();
+
+        return (array)$data;
     }
 }

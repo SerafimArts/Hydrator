@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Rds\Hydrator\Collection;
 
 use Rds\Hydrator\Mapper\AccessorInterface;
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
  * Class ReadersCollection
@@ -31,15 +32,13 @@ final class AccessorsCollection extends Collection
 
     /**
      * @param object $instance
-     * @param array $data
-     * @return array
+     * @param PayloadInterface $payload
+     * @return void
      */
-    public function apply(object $instance, array $data): array
+    public function apply(object $instance, PayloadInterface $payload): void
     {
         foreach ($this->getIterator() as $reader) {
-            $data = $reader->read($instance, $data);
+            $reader->read($instance, $payload);
         }
-
-        return $data;
     }
 }

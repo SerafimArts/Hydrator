@@ -10,6 +10,12 @@ declare(strict_types=1);
 namespace Rds\Hydrator;
 
 use Rds\Hydrator\Loader\LoaderInterface;
+use Rds\Hydrator\Loader\Config\FieldsConfig;
+use Rds\Hydrator\Loader\Config\EmbeddedConfig;
+use Rds\Hydrator\Loader\Config\AttributesConfig;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Rds\Hydrator\Loader\Config\CustomMapperConfig;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Rds\Hydrator\Loader\Configurator\SimpleConfigurator;
 use Rds\Hydrator\Loader\Configurator\ConfiguratorInterface;
 
@@ -29,22 +35,18 @@ class Factory implements FactoryInterface
     private $loaders;
 
     /**
-     * Factory constructor.
-     *
-     * @param LoaderInterface ...$loaders
+     * @var EventDispatcherInterface|EventDispatcher
      */
-    public function __construct(LoaderInterface ...$loaders)
-    {
-        $this->loaders = $loaders;
-    }
+    private $dispatcher;
 
     /**
-     * @param LoaderInterface $loader
-     * @return ConfiguratorInterface
+     * Factory constructor.
+     *
+     * @param EventDispatcherInterface $dispatcher
      */
-    private function configurator(LoaderInterface $loader): ConfiguratorInterface
+    public function __construct(EventDispatcherInterface $dispatcher = null)
     {
-        return new SimpleConfigurator($this);
+        $this->dispatcher = $dispatcher ?? new EventDispatcher();
     }
 
     /**
@@ -59,24 +61,13 @@ class Factory implements FactoryInterface
     }
 
     /**
-     * @param HydratorInterface $hydrator
-     * @return Factory|$this
-     */
-    public function withHydrator(HydratorInterface $hydrator): self
-    {
-        $this->hydrators[$hydrator->getClass()] = $hydrator;
-
-        return $this;
-    }
-
-    /**
      * @param string $class
      * @return HydratorInterface
      */
     public function create(string $class): HydratorInterface
     {
         if (! \array_key_exists($class, $this->hydrators)) {
-            $this->hydrators[$class] = $this->fromLoader($class) ?? new Hydrator($class);
+            $this->hydrators[$class] = $this->fromLoader($class) ?? $this->new($class);
         }
 
         return $this->hydrators[$class];
@@ -106,6 +97,22 @@ class Factory implements FactoryInterface
     }
 
     /**
+     * @param LoaderInterface $loader
+     * @return ConfiguratorInterface
+     */
+    private function configurator(LoaderInterface $loader): ConfiguratorInterface
+    {
+        $configurator = new SimpleConfigurator($this);
+
+        $configurator->withConfig(new FieldsConfig($this));
+        $configurator->withConfig(new AttributesConfig($this));
+        $configurator->withConfig(new EmbeddedConfig($this));
+        $configurator->withConfig(new CustomMapperConfig($this));
+
+        return $configurator;
+    }
+
+    /**
      * @param string $class
      * @param iterable|HydratorInterface[] $hydrators
      * @return HydratorInterface|null
@@ -123,5 +130,25 @@ class Factory implements FactoryInterface
         }
 
         return $needle;
+    }
+
+    /**
+     * @param HydratorInterface $hydrator
+     * @return Factory|$this
+     */
+    public function withHydrator(HydratorInterface $hydrator): self
+    {
+        $this->hydrators[$hydrator->getClass()] = $hydrator;
+
+        return $this;
+    }
+
+    /**
+     * @param string $class
+     * @return HydratorInterface
+     */
+    public function new(string $class): HydratorInterface
+    {
+        return new Hydrator($class, $this->dispatcher);
     }
 }

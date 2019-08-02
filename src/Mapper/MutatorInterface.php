@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator\Mapper;
 
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
+
 /**
  * Interface WriterInterface
  */
@@ -16,9 +18,9 @@ interface MutatorInterface extends MapperInterface
 {
     /**
      * @param object $instance
-     * @param array $data
+     * @param PayloadInterface $payload
      * @param object|null $context
      * @return void
      */
-    public function write(object $instance, array $data, object $context = null): void;
+    public function write(object $instance, PayloadInterface $payload, object $context = null): void;
 }

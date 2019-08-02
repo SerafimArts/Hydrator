@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator\Mapper;
 
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
+
 /**
  * Interface ReaderInterface
  */
@@ -16,9 +18,9 @@ interface AccessorInterface extends MapperInterface
 {
     /**
      * @param object $instance
-     * @param array $data
+     * @param PayloadInterface $payload
      * @param object $context
-     * @return array
+     * @return void
      */
-    public function read(object $instance, array $data, object $context = null): array;
+    public function read(object $instance, PayloadInterface $payload, object $context = null): void;
 }

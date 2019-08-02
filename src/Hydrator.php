@@ -9,16 +9,19 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator;
 
-use Rds\Hydrator\Mapper\Property;
-use Rds\Hydrator\Mapper\Embeddable;
-use Rds\Hydrator\Mapper\NestedProperty;
+use Rds\Hydrator\Event\Serialized;
+use Rds\Hydrator\Event\Serializing;
+use Rds\Hydrator\Event\Instantiated;
+use Rds\Hydrator\Event\Instantiating;
 use Rds\Hydrator\Mapper\MapperInterface;
 use Rds\Hydrator\Mapper\MutatorInterface;
 use Rds\Hydrator\Mapper\AccessorInterface;
 use Rds\Hydrator\Exception\HydratorException;
+use Rds\Hydrator\Mapper\Payload\NestedPayload;
 use Rds\Hydrator\Collection\MutatorsCollection;
 use Rds\Hydrator\Collection\AccessorsCollection;
-use Rds\Hydrator\Collection\CollectionInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
  * Class Hydrator
@@ -41,16 +44,17 @@ class Hydrator implements HydratorInterface
     private $accessors;
 
     /**
-     * @var array|\Closure[]
+     * @var EventDispatcherInterface|null
      */
-    private $onCreate = [];
+    private $dispatcher;
 
     /**
      * Hydrator constructor.
      *
      * @param string $class
+     * @param EventDispatcherInterface|null $dispatcher
      */
-    public function __construct(string $class)
+    public function __construct(string $class, EventDispatcherInterface $dispatcher = null)
     {
         try {
             $this->reflection = new \ReflectionClass($class);
@@ -58,51 +62,9 @@ class Hydrator implements HydratorInterface
             throw new HydratorException($e->getMessage(), $e->getCode());
         }
 
+        $this->dispatcher = $dispatcher;
         $this->accessors = new AccessorsCollection();
         $this->mutators = new MutatorsCollection();
-    }
-
-    /**
-     * @param \Closure $then
-     * @return Hydrator
-     */
-    public function onCreate(\Closure $then): self
-    {
-        $this->onCreate[] = $then;
-
-        return $this;
-    }
-
-    /**
-     * @param string $class
-     * @return Hydrator|$this|static
-     */
-    public static function new(string $class): self
-    {
-        return new static($class);
-    }
-
-    /**
-     * @param iterable $properties
-     * @return Hydrator|$this
-     */
-    public function properties(iterable $properties): self
-    {
-        foreach ($properties as $property => $key) {
-            $this->property(\is_int($property) ? $key : $property, $key);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param string $property
-     * @param string|null $key
-     * @return Hydrator|self
-     */
-    public function property(string $property, string $key = null): self
-    {
-        return $this->add(new Property($property, $key));
     }
 
     /**
@@ -123,43 +85,6 @@ class Hydrator implements HydratorInterface
     }
 
     /**
-     * @param string $property
-     * @param HydratorInterface $hydrator
-     * @return Hydrator
-     */
-    public function embedded(string $property, HydratorInterface $hydrator): self
-    {
-        return $this->add(new Embeddable($property, $hydrator));
-    }
-
-    /**
-     * @param string $property
-     * @param string|null $key
-     * @param string|null $delimiter
-     * @return Hydrator|self
-     */
-    public function nested(string $property, string $key = null, string $delimiter = null): self
-    {
-        return $this->add(new NestedProperty($property, $key, $delimiter));
-    }
-
-    /**
-     * @return AccessorsCollection|CollectionInterface
-     */
-    public function accessors(): CollectionInterface
-    {
-        return $this->accessors;
-    }
-
-    /**
-     * @return MutatorsCollection|CollectionInterface
-     */
-    public function mutators(): CollectionInterface
-    {
-        return $this->mutators;
-    }
-
-    /**
      * @return string
      */
     public function getClass(): string
@@ -168,27 +93,53 @@ class Hydrator implements HydratorInterface
     }
 
     /**
-     * @param array $data
+     * @param array|PayloadInterface $payload
+     * @param object|null $target
      * @param object|null $context
      * @return object
      */
-    public function make(array $data, object $context = null): object
+    public function hydrate($payload, object $target = null, object $context = null): object
     {
-        $instance = $this->mutators->apply($this->create(), $data);
+        $target = $target ?? $this->create();
+        $payload = $this->payload($payload);
 
-        foreach ($this->onCreate as $handler) {
-            $handler($instance, $data, $context);
+        if ($this->dispatcher) {
+            $this->dispatcher->dispatch(new Instantiating($target, $payload, $context));
         }
 
-        return $instance;
+        $this->mutators->apply($target, $payload);
+
+        if ($this->dispatcher) {
+            $this->dispatcher->dispatch(new Instantiated($target, $payload, $context));
+        }
+
+        return $target;
     }
 
     /**
      * @return object
      */
-    public function create(): object
+    protected function create(): object
     {
         return $this->reflection->newInstanceWithoutConstructor();
+    }
+
+    /**
+     * @param array|\Traversable|PayloadInterface $payload
+     * @return PayloadInterface
+     */
+    protected function payload($payload): PayloadInterface
+    {
+        switch (true) {
+            case \is_array($payload):
+                return new NestedPayload($payload);
+
+            case $payload instanceof \Traversable:
+                return new NestedPayload(\iterator_to_array($payload));
+
+            default:
+                return $payload;
+        }
     }
 
     /**
@@ -198,6 +149,18 @@ class Hydrator implements HydratorInterface
      */
     public function toArray(object $object, object $context = null): array
     {
-        return $this->accessors->apply($object, []);
+        $payload = $this->payload([]);
+
+        if ($this->dispatcher) {
+            $this->dispatcher->dispatch(new Serializing($object, $payload, $context));
+        }
+
+        $this->accessors->apply($object, $payload);
+
+        if ($this->dispatcher) {
+            $this->dispatcher->dispatch(new Serialized($object, $payload, $context));
+        }
+
+        return $payload->toArray();
     }
 }

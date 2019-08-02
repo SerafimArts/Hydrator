@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator\Mapper;
 
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
+
 /**
  * Class Property
  */
@@ -27,16 +29,6 @@ class Property implements AccessorInterface, MutatorInterface
     protected $property;
 
     /**
-     * @var \Closure
-     */
-    protected $accessor;
-
-    /**
-     * @var \Closure
-     */
-    protected $mutator;
-
-    /**
      * PropertyReader constructor.
      *
      * @param string $property
@@ -46,38 +38,29 @@ class Property implements AccessorInterface, MutatorInterface
     {
         $this->property = $property;
         $this->key = $key ?? $property;
-
-        $this->accessor = $this->propertyAccessor($property);
-        $this->mutator = $this->propertyMutator($property);
     }
 
     /**
      * @param object $instance
-     * @param mixed $data
+     * @param PayloadInterface $payload
      * @param object $context
-     * @return mixed
+     * @return void
      */
-    public function read(object $instance, array $data, object $context = null): array
+    public function read(object $instance, PayloadInterface $payload, object $context = null): void
     {
-        $this->assertPropertyExists($instance, $this->property);
-
-        $data[$this->key] = $this->accessor->call($instance);
-
-        return $data;
+        $payload->set($this->key, $this->access($instance, $this->property));
     }
 
     /**
      * @param object $instance
-     * @param array $data
+     * @param PayloadInterface $payload
      * @param object|null $context
      * @return void
      */
-    public function write(object $instance, array $data, object $context = null): void
+    public function write(object $instance, PayloadInterface $payload, object $context = null): void
     {
-        $this->assertPropertyExists($instance, $this->property);
-
-        if (\array_key_exists($this->key, $data)) {
-            $this->mutator->call($instance, $data[$this->key]);
-        }
+        $payload->get($this->key, function ($value) use ($instance) {
+            $this->mutate($instance, $this->property, $value);
+        });
     }
 }

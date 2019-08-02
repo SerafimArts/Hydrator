@@ -19,11 +19,32 @@ trait PropertyHelpersTrait
     /**
      * @param object $context
      * @param string $property
+     * @return mixed
+     */
+    protected function access(object $context, string $property)
+    {
+        return $this->propertyAccessor($property)->call($context);
+    }
+
+    /**
+     * @param object $context
+     * @param string $property
+     * @param mixed $value
+     * @return mixed
+     */
+    protected function mutate(object $context, string $property, $value)
+    {
+        return $this->propertyMutator($property)->call($context, $value);
+    }
+
+    /**
+     * @param object $context
+     * @param string $property
      * @return InvalidMappingsException
      */
     protected function propertyNotFoundException(object $context, string $property): InvalidMappingsException
     {
-        $message = 'The property $%s not defined it the class %s';
+        $message = 'The property $%s not defined in the class %s';
 
         return new InvalidMappingsException(\sprintf($message, $property, \get_class($context)));
     }
@@ -34,7 +55,7 @@ trait PropertyHelpersTrait
      * @return void
      * @throws InvalidMappingsException
      */
-    protected function assertPropertyExists(object $context, string $property): void
+    public function assertPropertyExists(object $context, string $property): void
     {
         if (! \property_exists($context, $property)) {
             throw $this->propertyNotFoundException($context, $property);
@@ -47,7 +68,11 @@ trait PropertyHelpersTrait
      */
     protected function propertyMutator(string $property): \Closure
     {
-        return function ($value) use ($property): void {
+        $self = $this;
+
+        return function ($value) use ($property, $self): void {
+            $self->assertPropertyExists($this, $property);
+
             $this->$property = $value;
         };
     }
@@ -58,7 +83,11 @@ trait PropertyHelpersTrait
      */
     protected function propertyAccessor(string $property): \Closure
     {
-        return function () use ($property) {
+        $self = $this;
+
+        return function () use ($property, $self) {
+            $self->assertPropertyExists($this, $property);
+
             return $this->$property;
         };
     }

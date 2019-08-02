@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Rds\Hydrator\Collection;
 
 use Rds\Hydrator\Mapper\MapperInterface;
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
  * Interface CollectionInterface
@@ -24,8 +25,8 @@ interface CollectionInterface extends \IteratorAggregate
 
     /**
      * @param object $instance
-     * @param array $data
-     * @return mixed
+     * @param PayloadInterface $payload
+     * @return void
      */
-    public function apply(object $instance, array $data);
+    public function apply(object $instance, PayloadInterface $payload): void;
 }

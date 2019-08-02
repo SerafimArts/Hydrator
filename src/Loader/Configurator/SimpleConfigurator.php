@@ -10,13 +10,10 @@ declare(strict_types=1);
 namespace Rds\Hydrator\Loader\Configurator;
 
 use JsonSchema\Validator;
-use Rds\Hydrator\Hydrator;
-use Rds\Hydrator\Mapper\Property;
 use Rds\Hydrator\FactoryInterface;
 use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Mapper\Embeddable;
-use Rds\Hydrator\Mapper\NestedProperty;
 use JsonSchema\Exception\ExceptionInterface;
+use Rds\Hydrator\Loader\Config\ConfigInterface;
 use Rds\Hydrator\Exception\LoaderConfigurationException;
 
 /**
@@ -30,16 +27,6 @@ class SimpleConfigurator implements ConfiguratorInterface
     protected const JSON_SCHEMA_PATHNAME = __DIR__ . '/../../../resources/config.schema.json';
 
     /**
-     * @var string
-     */
-    private const ERROR_EMBEDDABLE = 'Can not load embeddable "%s" for property "%s"';
-
-    /**
-     * @var string
-     */
-    private const ERROR_CLASS_NOT_FOUND = 'Class "%s" not found or could not be loaded';
-
-    /**
      * @var Validator
      */
     private $validator;
@@ -50,6 +37,11 @@ class SimpleConfigurator implements ConfiguratorInterface
     private $factory;
 
     /**
+     * @var array|ConfigInterface[]
+     */
+    private $configs = [];
+
+    /**
      * SimpleConfigurator constructor.
      *
      * @param FactoryInterface $factory
@@ -58,6 +50,17 @@ class SimpleConfigurator implements ConfiguratorInterface
     {
         $this->factory = $factory;
         $this->validator = new Validator();
+    }
+
+    /**
+     * @param ConfigInterface $config
+     * @return SimpleConfigurator|$this
+     */
+    public function withConfig(ConfigInterface $config): self
+    {
+        $this->configs[] = $config;
+
+        return $this;
     }
 
     /**
@@ -77,7 +80,7 @@ class SimpleConfigurator implements ConfiguratorInterface
         }
 
         foreach ($hydrators as $class => $hydrator) {
-            $this->resolve($hydrator, $config[$class]);
+            $this->deferred($hydrator, $config[$class]);
         }
     }
 
@@ -111,26 +114,17 @@ class SimpleConfigurator implements ConfiguratorInterface
      */
     private function create(string $class, array $config): HydratorInterface
     {
-        $hydrator = $this->createHydrator($class);
+        $hydrator = $this->factory->new($class);
 
-        foreach ($config['fields'] ?? [] as $property => $key) {
-            $hydrator->add(new Property($property, $key));
-        }
-
-        foreach ($config['nested'] ?? [] as $property => $key) {
-            $hydrator->add(new NestedProperty($property, $key));
+        foreach ($this->configs as $expr) {
+            foreach ($config as $key => $data) {
+                if ($expr->match($key) && ! $expr->isDeferred()) {
+                    $expr->apply($hydrator, $key, $data);
+                }
+            }
         }
 
         return $hydrator;
-    }
-
-    /**
-     * @param string $class
-     * @return HydratorInterface
-     */
-    protected function createHydrator(string $class): HydratorInterface
-    {
-        return new Hydrator($class);
     }
 
     /**
@@ -138,28 +132,16 @@ class SimpleConfigurator implements ConfiguratorInterface
      * @param array $config
      * @return HydratorInterface
      */
-    private function resolve(HydratorInterface $hydrator, array $config): HydratorInterface
+    private function deferred(HydratorInterface $hydrator, array $config): HydratorInterface
     {
-        foreach ($config['embedded'] ?? [] as $property => $class) {
-            $message = \sprintf(self::ERROR_EMBEDDABLE, $class, $property);
-            $this->assertClassExists($class, $message);
-
-            $hydrator->add(new Embeddable($property, $this->factory->create($class)));
+        foreach ($this->configs as $expr) {
+            foreach ($config as $key => $data) {
+                if ($expr->match($key) && $expr->isDeferred()) {
+                    $expr->apply($hydrator, $key, $data);
+                }
+            }
         }
 
         return $hydrator;
-    }
-
-    /**
-     * @param string $class
-     * @param string $prefix
-     * @return void
-     */
-    private function assertClassExists(string $class, string $prefix): void
-    {
-        if (! \class_exists($class)) {
-            $message = \sprintf(self::ERROR_CLASS_NOT_FOUND, $class);
-            throw new LoaderConfigurationException($prefix . '. ' . $message);
-        }
     }
 }

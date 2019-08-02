@@ -23,4 +23,19 @@ class Avatar
      * @var string
      */
     private $example;
+
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
+     * Avatar constructor.
+     *
+     * @param User $user
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 }

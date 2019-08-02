@@ -10,6 +10,8 @@ declare(strict_types=1);
 namespace Rds\Hydrator\Collection;
 
 use Rds\Hydrator\Mapper\MutatorInterface;
+use Rds\Hydrator\Mapper\Payload\NestedPayload;
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
  * Class ReadersCollection
@@ -31,15 +33,13 @@ final class MutatorsCollection extends Collection
 
     /**
      * @param object $instance
-     * @param array $data
-     * @return object
+     * @param PayloadInterface $payload
+     * @return void
      */
-    public function apply(object $instance, array $data): object
+    public function apply(object $instance, PayloadInterface $payload): void
     {
         foreach ($this->getIterator() as $reader) {
-            $reader->write($instance, $data);
+            $reader->write($instance, $payload);
         }
-
-        return $instance;
     }
 }

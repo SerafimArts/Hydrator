@@ -12,11 +12,8 @@ namespace Rds\Hydrator\Tests;
 use Rds\Hydrator\Factory;
 use PHPUnit\Framework\Exception;
 use Rds\Hydrator\FactoryInterface;
-use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Loader\JsonLoader;
-use Rds\Hydrator\Loader\YamlLoader;
 use Rds\Hydrator\Tests\Models\User;
-use Rds\Hydrator\Loader\Json5Loader;
+use Rds\Hydrator\Tests\Models\Avatar;
 use PHPUnit\Framework\ExpectationFailedException;
 
 /**
@@ -25,46 +22,99 @@ use PHPUnit\Framework\ExpectationFailedException;
 class ComplexTestCase extends TestCase
 {
     /**
+     * @dataProvider factoryDataProvider
+     *
+     * @param FactoryInterface $factory
+     * @param array $payload
      * @return void
      * @throws Exception
      * @throws ExpectationFailedException
      */
-    public function testUserIsLoadable(): void
+    public function testUserIsConfigurable(FactoryInterface $factory, array $payload): void
     {
-        $hydrator = $this->hydrator(User::class);
+        $user = $factory->create(User::class)->hydrate($payload);
 
-        $user = $hydrator->make([
+        $avatar = $this->access($user, 'avatar');
+
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertInstanceOf(Avatar::class, $avatar);
+
+        $this->assertSame(42, $this->access($user, 'id'));
+        $this->assertSame('Vasya', $this->access($user, 'login'));
+        $this->assertSame([
+            'a' => 42,
+            'b' => ['b' => 'Vasya'],
+            'c' => 'https://example.com',
+            'd' => ['d' => 23],
+        ], $this->access($user, 'attr'));
+
+        $this->assertSame('https://example.com', $this->access($avatar, 'url'));
+        $this->assertSame(23, $this->access($avatar, 'example'));
+    }
+
+    /**
+     * @dataProvider factoryDataProvider
+     *
+     * @param FactoryInterface $factory
+     * @param array $payload
+     * @return void
+     * @throws Exception
+     * @throws ExpectationFailedException
+     */
+    public function testUserIsSerializable(FactoryInterface $factory, array $payload): void
+    {
+        $hydrator = $factory->create(User::class);
+
+        $this->assertSame($payload, $hydrator->toArray($hydrator->hydrate($payload)));
+    }
+
+    /**
+     * @dataProvider factoryDataProvider
+     *
+     * @param FactoryInterface $factory
+     * @param array $payload
+     * @return void
+     */
+    public function testDump(FactoryInterface $factory, array $payload): void
+    {
+        $this->expectNotToPerformAssertions();
+
+        $hydrator = $factory->create(User::class);
+
+        \dump($hydrator->hydrate($payload));
+    }
+
+    /**
+     * @return array
+     */
+    public function factoryDataProvider(): array
+    {
+        $result = [];
+
+        foreach ($this->loaders(__DIR__ . '/config') as $loader) {
+            $factory = new Factory($this->dispatcher());
+
+            $result[\get_class($loader)] = [
+                $factory->withLoader($loader),
+                $this->payload(),
+            ];
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return array
+     */
+    private function payload(): array
+    {
+        return [
             'id'       => 42,
             'username' => 'Vasya',
             'link'     => 'https://example.com',
             'some'     => [
-                'any' => 'test',
+                'any' => 23,
             ],
-        ]);
-
-        dump($user, $hydrator->toArray($user));
-
-        $this->assertInstanceOf(User::class, $user);
-    }
-
-    /**
-     * @param string $class
-     * @return HydratorInterface
-     */
-    private function hydrator(string $class): HydratorInterface
-    {
-        return $this->factory()->create($class);
-    }
-
-    /**
-     * @return FactoryInterface
-     */
-    private function factory(): FactoryInterface
-    {
-        return new Factory(
-            new YamlLoader(__DIR__ . '/config'),
-            new Json5Loader(__DIR__ . '/config'),
-            new JsonLoader(__DIR__ . '/config')
-        );
+        ];
     }
 }

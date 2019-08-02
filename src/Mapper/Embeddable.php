@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Rds\Hydrator\Mapper;
 
 use Rds\Hydrator\HydratorInterface;
+use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
  * Class Embeddable
@@ -29,16 +30,6 @@ class Embeddable implements AccessorInterface, MutatorInterface
     private $embeddable;
 
     /**
-     * @var \Closure
-     */
-    private $accessor;
-
-    /**
-     * @var \Closure
-     */
-    private $mutator;
-
-    /**
      * Embeddable constructor.
      *
      * @param string $property
@@ -48,41 +39,33 @@ class Embeddable implements AccessorInterface, MutatorInterface
     {
         $this->property = $property;
         $this->embeddable = $embeddable;
-
-        $this->accessor = $this->propertyAccessor($property);
-        $this->mutator = $this->propertyMutator($property);
     }
 
     /**
      * @param object $instance
-     * @param array $data
+     * @param PayloadInterface $payload
      * @param object|null $context
-     * @return array
+     * @return void
      */
-    public function read(object $instance, array $data, object $context = null): array
+    public function read(object $instance, PayloadInterface $payload, object $context = null): void
     {
-        $this->assertPropertyExists($instance, $this->property);
+        $embeddable = $this->access($instance, $this->property);
 
-        $embeddable = $this->embeddable->toArray(
-            $this->accessor->call($instance),
-            $instance
-        );
-
-        return \array_merge($data, $embeddable);
+        foreach ($this->embeddable->toArray($embeddable, $instance) as $key => $value) {
+            $payload->set($key, $value);
+        }
     }
 
     /**
      * @param object $instance
-     * @param array $data
+     * @param PayloadInterface $payload
      * @param object $context
      * @return void
      */
-    public function write(object $instance, array $data, object $context = null): void
+    public function write(object $instance, PayloadInterface $payload, object $context = null): void
     {
-        $this->assertPropertyExists($instance, $this->property);
+        $embeddable = $this->embeddable->hydrate($payload->toArray(), null, $instance);
 
-        $embeddable = $this->embeddable->make($data, $instance);
-
-        $this->mutator->call($instance, $embeddable);
+        $this->mutate($instance, $this->property, $embeddable);
     }
 }

@@ -1,0 +1,19 @@
+{
+    "Rds\\Hydrator\\Tests\\Models\\User": {
+        "attributes": {
+            "attr": {
+                "a": "id",
+                "b.b": "username",
+                "c": "link",
+                "d.d": "some.any"
+            }
+        },
+        "fields": {
+            "id": "id",
+            "login": "username"
+        },
+        "embedded": {
+            "avatar": "Rds\\Hydrator\\Tests\\Models\\Avatar"
+        }
+    }
+}

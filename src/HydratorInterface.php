@@ -28,11 +28,12 @@ interface HydratorInterface
     public function add(MapperInterface $mapper): self;
 
     /**
-     * @param array $data
+     * @param array $payload
+     * @param object|null $target
      * @param object|null $context
      * @return object
      */
-    public function make(array $data, object $context = null): object;
+    public function hydrate(array $payload, object $target = null, object $context = null): object;
 
     /**
      * @param object $object
