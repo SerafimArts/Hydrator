@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Rds\Hydrator\Collection;
+namespace Rds\Hydrator\Store;
 
 use Rds\Hydrator\Mapper\MapperInterface;
 use Rds\Hydrator\Mapper\AccessorInterface;
@@ -15,7 +15,7 @@ use Rds\Hydrator\Mapper\AccessorInterface;
 /**
  * Class Collection
  */
-abstract class Collection implements CollectionInterface
+abstract class Store implements StoreInterface
 {
     /**
      * @var \SplObjectStorage|AccessorInterface[]
@@ -32,9 +32,9 @@ abstract class Collection implements CollectionInterface
 
     /**
      * @param MapperInterface $element
-     * @return CollectionInterface|$this
+     * @return StoreInterface|$this
      */
-    public function add(MapperInterface $element): CollectionInterface
+    public function add(MapperInterface $element): StoreInterface
     {
         $this->items->attach($element);
 

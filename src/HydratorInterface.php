@@ -17,11 +17,6 @@ use Rds\Hydrator\Mapper\MapperInterface;
 interface HydratorInterface
 {
     /**
-     * @return string
-     */
-    public function getClass(): string;
-
-    /**
      * @param MapperInterface $mapper
      * @return HydratorInterface|$this
      */

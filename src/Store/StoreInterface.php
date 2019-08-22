@@ -7,19 +7,19 @@
  */
 declare(strict_types=1);
 
-namespace Rds\Hydrator\Collection;
+namespace Rds\Hydrator\Store;
 
 use Rds\Hydrator\Mapper\MapperInterface;
 use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
- * Interface CollectionInterface
+ * Interface StoreInterface
  */
-interface CollectionInterface extends \IteratorAggregate
+interface StoreInterface extends \IteratorAggregate
 {
     /**
      * @param MapperInterface $element
-     * @return CollectionInterface|$this
+     * @return StoreInterface|$this
      */
     public function add(MapperInterface $element): self;
 

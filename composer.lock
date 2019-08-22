@@ -4,74 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a955252010ce3b50e6f24ca038758cd",
+    "content-hash": "c9db504bb7571f65806cf4cf30985c35",
     "packages": [
-        {
-            "name": "justinrainbow/json-schema",
-            "version": "5.2.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "dcb6e1006bb5fd1e392b4daa68932880f37550d4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/dcb6e1006bb5fd1e392b4daa68932880f37550d4",
-                "reference": "dcb6e1006bb5fd1e392b4daa68932880f37550d4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "~2.2.20",
-                "json-schema/json-schema-test-suite": "1.2.0",
-                "phpunit/phpunit": "^4.8.35"
-            },
-            "bin": [
-                "bin/validate-json"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "JsonSchema\\": "src/JsonSchema/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bruno Prieto Reis",
-                    "email": "bruno.p.reis@gmail.com"
-                },
-                {
-                    "name": "Justin Rainbow",
-                    "email": "justin.rainbow@gmail.com"
-                },
-                {
-                    "name": "Igor Wiedler",
-                    "email": "igor@wiedler.ch"
-                },
-                {
-                    "name": "Robert Schönthal",
-                    "email": "seroscho@googlemail.com"
-                }
-            ],
-            "description": "A library to validate a json schema.",
-            "homepage": "https://github.com/justinrainbow/json-schema",
-            "keywords": [
-                "json",
-                "schema"
-            ],
-            "time": "2019-01-14T23:55:14+00:00"
-        },
         {
             "name": "psr/event-dispatcher",
             "version": "1.0.0",
@@ -257,9 +191,9 @@
             "authors": [
                 {
                     "name": "Brian Scaturro",
+                    "role": "Lead",
                     "email": "scaturrob@gmail.com",
-                    "homepage": "http://brianscaturro.com",
-                    "role": "Lead"
+                    "homepage": "http://brianscaturro.com"
                 }
             ],
             "description": "Parallel testing for PHP",
@@ -459,7 +393,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.8.30",
+            "version": "v5.8.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -503,16 +437,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.8.30",
+            "version": "v5.8.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "1d82de27c37ee6e8493dac0521cbda5b9456626c"
+                "reference": "7aabcab4634a1c7865fa6acb6b1b810cf4b699ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/1d82de27c37ee6e8493dac0521cbda5b9456626c",
-                "reference": "1d82de27c37ee6e8493dac0521cbda5b9456626c",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/7aabcab4634a1c7865fa6acb6b1b810cf4b699ea",
+                "reference": "7aabcab4634a1c7865fa6acb6b1b810cf4b699ea",
                 "shasum": ""
             },
             "require": {
@@ -560,20 +494,20 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2019-07-26T06:46:07+00:00"
+            "time": "2019-08-11T12:48:29+00:00"
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.9.1",
+            "version": "1.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72"
+                "reference": "007c053ae6f31bba39dfa19a7726f56e9763bbea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72",
-                "reference": "e6828efaba2c9b79f4499dae1d66ef8bfa7b2b72",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/007c053ae6f31bba39dfa19a7726f56e9763bbea",
+                "reference": "007c053ae6f31bba39dfa19a7726f56e9763bbea",
                 "shasum": ""
             },
             "require": {
@@ -608,20 +542,20 @@
                 "object",
                 "object graph"
             ],
-            "time": "2019-04-07T13:18:21+00:00"
+            "time": "2019-08-09T12:45:53+00:00"
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.22.0",
+            "version": "2.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "1a0e48b5f656065ba3c265b058b25d36c2162a5e"
+                "reference": "767617a047e5b8b8b3b0b6023a2650847ed7df02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/1a0e48b5f656065ba3c265b058b25d36c2162a5e",
-                "reference": "1a0e48b5f656065ba3c265b058b25d36c2162a5e",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/767617a047e5b8b8b3b0b6023a2650847ed7df02",
+                "reference": "767617a047e5b8b8b3b0b6023a2650847ed7df02",
                 "shasum": ""
             },
             "require": {
@@ -668,75 +602,14 @@
                     "homepage": "http://github.com/kylekatarnls"
                 }
             ],
-            "description": "A simple API extension for DateTime.",
+            "description": "A API extension for DateTime that supports 281 different languages.",
             "homepage": "http://carbon.nesbot.com",
             "keywords": [
                 "date",
                 "datetime",
                 "time"
             ],
-            "time": "2019-07-28T09:02:12+00:00"
-        },
-        {
-            "name": "nette/neon",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/neon.git",
-                "reference": "cbff32059cbdd8720deccf9e9eace6ee516f02eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/neon/zipball/cbff32059cbdd8720deccf9e9eace6ee516f02eb",
-                "reference": "cbff32059cbdd8720deccf9e9eace6ee516f02eb",
-                "shasum": ""
-            },
-            "require": {
-                "ext-iconv": "*",
-                "ext-json": "*",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "nette/tester": "^2.0",
-                "tracy/tracy": "^2.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "? Nette NEON: encodes and decodes NEON file format.",
-            "homepage": "http://ne-on.org",
-            "keywords": [
-                "export",
-                "import",
-                "neon",
-                "nette",
-                "yaml"
-            ],
-            "time": "2019-02-05T21:30:40+00:00"
+            "time": "2019-08-17T13:57:34+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -776,18 +649,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "email": "sebastian@phpeople.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpeople.de"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
@@ -991,370 +864,6 @@
                 }
             ],
             "time": "2017-07-14T14:27:02+00:00"
-        },
-        {
-            "name": "phplrt/ast",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phplrt/ast.git",
-                "reference": "fb5052c83fd336bdeb6b9935c7af4570ac53e21a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phplrt/ast/zipball/fb5052c83fd336bdeb6b9935c7af4570ac53e21a",
-                "reference": "fb5052c83fd336bdeb6b9935c7af4570ac53e21a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3"
-            },
-            "suggest": {
-                "ext-dom": "Dumping abstract syntax tree as XML"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phplrt\\Ast\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "The PHPLRT Ast package.",
-            "homepage": "https://github.com/phplrt",
-            "keywords": [
-                "ast",
-                "dump",
-                "tree"
-            ],
-            "time": "2019-05-14T16:41:12+00:00"
-        },
-        {
-            "name": "phplrt/exception",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phplrt/exception.git",
-                "reference": "f09e8bc79d095bdd537338ef1864c41cbb734750"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phplrt/exception/zipball/f09e8bc79d095bdd537338ef1864c41cbb734750",
-                "reference": "f09e8bc79d095bdd537338ef1864c41cbb734750",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3",
-                "phplrt/io": "1.1.*|1.1.x-dev",
-                "phplrt/position": "1.1.*|1.1.x-dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phplrt\\Exception\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "The PHPLRT Exception package.",
-            "homepage": "https://github.com/phplrt",
-            "keywords": [
-                "exception",
-                "formatting"
-            ],
-            "time": "2019-05-14T16:41:20+00:00"
-        },
-        {
-            "name": "phplrt/io",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phplrt/io.git",
-                "reference": "f277a6c8c65fd8b1552b839267de337264a0163f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phplrt/io/zipball/f277a6c8c65fd8b1552b839267de337264a0163f",
-                "reference": "f277a6c8c65fd8b1552b839267de337264a0163f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3",
-                "phplrt/exception": "1.1.*|1.1.x-dev",
-                "phplrt/position": "1.1.*|1.1.x-dev",
-                "phplrt/stream": "1.1.*|1.1.x-dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phplrt\\Io\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "The PHPLRT Io package.",
-            "homepage": "https://github.com/phplrt",
-            "keywords": [
-                "abstraction",
-                "directory",
-                "file",
-                "file system",
-                "fs",
-                "reader"
-            ],
-            "time": "2019-05-14T16:41:24+00:00"
-        },
-        {
-            "name": "phplrt/lexer",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phplrt/lexer.git",
-                "reference": "d9268dab61abb5f86bb735d5078385988490125f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phplrt/lexer/zipball/d9268dab61abb5f86bb735d5078385988490125f",
-                "reference": "d9268dab61abb5f86bb735d5078385988490125f",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pcre": "*",
-                "php": ">=7.1.3",
-                "phplrt/exception": "1.1.*|1.1.x-dev",
-                "phplrt/io": "1.1.*|1.1.x-dev"
-            },
-            "suggest": {
-                "ext-parle": "Parle extension fallback"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phplrt\\Lexer\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "The PHPLRT Lexer package.",
-            "homepage": "https://github.com/phplrt",
-            "keywords": [
-                "lexer",
-                "parsing",
-                "regex",
-                "stream",
-                "token",
-                "tokenizer"
-            ],
-            "time": "2019-05-14T16:41:28+00:00"
-        },
-        {
-            "name": "phplrt/parser",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phplrt/parser.git",
-                "reference": "00ca1c1eccf7cbd06e5532aefb4234e2e957d6b7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phplrt/parser/zipball/00ca1c1eccf7cbd06e5532aefb4234e2e957d6b7",
-                "reference": "00ca1c1eccf7cbd06e5532aefb4234e2e957d6b7",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3",
-                "phplrt/ast": "1.1.*|1.1.x-dev",
-                "phplrt/exception": "1.1.*|1.1.x-dev",
-                "phplrt/io": "1.1.*|1.1.x-dev",
-                "phplrt/lexer": "1.1.*|1.1.x-dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phplrt\\Parser\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "The PHPLRT Parser package.",
-            "homepage": "https://github.com/phplrt",
-            "keywords": [
-                "language",
-                "ll1",
-                "llk",
-                "lr",
-                "parser",
-                "php",
-                "slr"
-            ],
-            "time": "2019-05-14T16:41:31+00:00"
-        },
-        {
-            "name": "phplrt/position",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phplrt/position.git",
-                "reference": "dfc37c5849eaa760708e1e840aba31166a7b45d1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phplrt/position/zipball/dfc37c5849eaa760708e1e840aba31166a7b45d1",
-                "reference": "dfc37c5849eaa760708e1e840aba31166a7b45d1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phplrt\\Position\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "The PHPLRT Position package.",
-            "homepage": "https://github.com/phplrt",
-            "keywords": [
-                "analyzing",
-                "column",
-                "input",
-                "line",
-                "offset",
-                "position",
-                "utils",
-                "visualization"
-            ],
-            "time": "2019-05-14T16:41:35+00:00"
-        },
-        {
-            "name": "phplrt/stream",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phplrt/stream.git",
-                "reference": "2458c302a2a09a503f707e4185db9f8e51590abc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phplrt/stream/zipball/2458c302a2a09a503f707e4185db9f8e51590abc",
-                "reference": "2458c302a2a09a503f707e4185db9f8e51590abc",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3",
-                "phplrt/exception": "1.1.*|1.1.x-dev",
-                "psr/http-message": "1.0.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "master": "1.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phplrt\\Stream\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "The PHPLRT Stream package.",
-            "homepage": "https://github.com/phplrt",
-            "keywords": [
-                "reader",
-                "resource",
-                "streaming"
-            ],
-            "abandoned": true,
-            "time": "2019-07-05T23:27:06+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -1673,16 +1182,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.3.2",
+            "version": "8.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "e77a49b6da82240f40ddd4be536d30d7dae5c168"
+                "reference": "e31cce0cf4499c0ccdbbb211a3280d36ab341e36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e77a49b6da82240f40ddd4be536d30d7dae5c168",
-                "reference": "e77a49b6da82240f40ddd4be536d30d7dae5c168",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e31cce0cf4499c0ccdbbb211a3280d36ab341e36",
+                "reference": "e31cce0cf4499c0ccdbbb211a3280d36ab341e36",
                 "shasum": ""
             },
             "require": {
@@ -1752,7 +1261,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-08-02T13:42:49+00:00"
+            "time": "2019-08-11T06:56:55+00:00"
         },
         {
             "name": "psr/container",
@@ -1802,130 +1311,6 @@
                 "psr"
             ],
             "time": "2017-02-14T16:28:37+00:00"
-        },
-        {
-            "name": "psr/http-message",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Http\\Message\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for HTTP messages",
-            "homepage": "https://github.com/php-fig/http-message",
-            "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "time": "2016-08-06T14:39:51+00:00"
-        },
-        {
-            "name": "railt/json",
-            "version": "1.4.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/railt/json.git",
-                "reference": "d945d86fd014d4bbdfa68f1269d7df2b642255f4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/railt/json/zipball/d945d86fd014d4bbdfa68f1269d7df2b642255f4",
-                "reference": "d945d86fd014d4bbdfa68f1269d7df2b642255f4",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "justinrainbow/json-schema": "~5.2",
-                "php": ">=7.1.3",
-                "phplrt/io": "~1.1",
-                "phplrt/lexer": "~1.1",
-                "phplrt/parser": "~1.1"
-            },
-            "require-dev": {
-                "phplrt/compiler": "~1.0",
-                "phpunit/phpunit": "^7.5"
-            },
-            "suggest": {
-                "railt/lexer": "(1.4.*) JSON5 decoder support",
-                "railt/parser": "(1.4.*) JSON5 decoder support"
-            },
-            "type": "library",
-            "extra": {
-                "railt": {
-                    "commands": [
-                        "Railt\\Json\\Console\\Json5CompileCommand"
-                    ]
-                },
-                "branch-alias": {
-                    "1.3.x": "1.3.x-dev",
-                    "1.4.x": "1.4.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Railt\\": "src/"
-                },
-                "files": [
-                    "./src/Json/polyfill.php",
-                    "./src/Json/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kirill Nesmeyanov",
-                    "email": "nesk@xakep.ru"
-                }
-            ],
-            "description": "Simple library for working with json data",
-            "homepage": "http://railt.org",
-            "keywords": [
-                "JSON5",
-                "decode",
-                "encode",
-                "json",
-                "parsing",
-                "read",
-                "write"
-            ],
-            "time": "2019-05-21T13:46:56+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -2147,16 +1532,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "234199f4528de6d12aaa58b612e98f7d36adb937"
+                "reference": "06a9a5947f47b3029d76118eb5c22802e5869687"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/234199f4528de6d12aaa58b612e98f7d36adb937",
-                "reference": "234199f4528de6d12aaa58b612e98f7d36adb937",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/06a9a5947f47b3029d76118eb5c22802e5869687",
+                "reference": "06a9a5947f47b3029d76118eb5c22802e5869687",
                 "shasum": ""
             },
             "require": {
@@ -2184,6 +1569,10 @@
             ],
             "authors": [
                 {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de"
+                },
+                {
                     "name": "Jeff Welch",
                     "email": "whatthejeff@gmail.com"
                 },
@@ -2192,16 +1581,12 @@
                     "email": "github@wallbash.com"
                 },
                 {
-                    "name": "Bernhard Schussek",
-                    "email": "bschussek@2bepublished.at"
-                },
-                {
-                    "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de"
-                },
-                {
                     "name": "Adam Harvey",
                     "email": "aharvey@php.net"
+                },
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
                 }
             ],
             "description": "Provides the functionality to export PHP variables for visualization",
@@ -2210,7 +1595,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2017-04-03T13:19:02+00:00"
+            "time": "2019-08-11T12:43:14+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -2747,16 +2132,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "82ebae02209c21113908c229e9883c419720738a"
+                "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
-                "reference": "82ebae02209c21113908c229e9883c419720738a",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/550ebaac289296ce228a706d0867afc34687e3f4",
+                "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
                 "shasum": ""
             },
             "require": {
@@ -2768,7 +2153,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -2785,12 +2170,12 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                },
-                {
                     "name": "Gert de Pagter",
                     "email": "BackEndTea@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -2801,20 +2186,20 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609"
+                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fe5e94c604826c35a32fa832f35bd036b6799609",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
                 "shasum": ""
             },
             "require": {
@@ -2826,7 +2211,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -2860,20 +2245,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "ab50dcf166d5f577978419edd37aa2bb8eabce0c"
+                "reference": "04ce3335667451138df4307d6a9b61565560199e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/ab50dcf166d5f577978419edd37aa2bb8eabce0c",
-                "reference": "ab50dcf166d5f577978419edd37aa2bb8eabce0c",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/04ce3335667451138df4307d6a9b61565560199e",
+                "reference": "04ce3335667451138df4307d6a9b61565560199e",
                 "shasum": ""
             },
             "require": {
@@ -2882,7 +2267,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -2915,20 +2300,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "d1fb4abcc0c47be136208ad9d68bf59f1ee17abd"
+                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/d1fb4abcc0c47be136208ad9d68bf59f1ee17abd",
-                "reference": "d1fb4abcc0c47be136208ad9d68bf59f1ee17abd",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/2ceb49eaccb9352bff54d22570276bb75ba4a188",
+                "reference": "2ceb49eaccb9352bff54d22570276bb75ba4a188",
                 "shasum": ""
             },
             "require": {
@@ -2937,7 +2322,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "autoload": {
@@ -2973,7 +2358,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-08-06T08:03:45+00:00"
         },
         {
             "name": "symfony/process",
@@ -3292,65 +2677,6 @@
             "time": "2019-07-27T06:42:46+00:00"
         },
         {
-            "name": "symfony/yaml",
-            "version": "v4.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "34d29c2acd1ad65688f58452fd48a46bd996d5a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/34d29c2acd1ad65688f58452fd48a46bd996d5a6",
-                "reference": "34d29c2acd1ad65688f58452fd48a46bd996d5a6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "symfony/polyfill-ctype": "~1.8"
-            },
-            "conflict": {
-                "symfony/console": "<3.4"
-            },
-            "require-dev": {
-                "symfony/console": "~3.4|~4.0"
-            },
-            "suggest": {
-                "symfony/console": "For validating YAML files using the lint command"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "time": "2019-07-24T14:47:54+00:00"
-        },
-        {
             "name": "theseer/tokenizer",
             "version": "1.1.3",
             "source": {
@@ -3383,8 +2709,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "email": "arne@blankerts.de",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "arne@blankerts.de"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
@@ -3444,9 +2770,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "railt/json": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

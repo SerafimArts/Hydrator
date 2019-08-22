@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator;
 
+use Rds\Hydrator\Store\Mutators;
+use Rds\Hydrator\Store\Accessors;
 use Rds\Hydrator\Event\Serialized;
 use Rds\Hydrator\Event\Serializing;
 use Rds\Hydrator\Event\Instantiated;
@@ -18,8 +20,6 @@ use Rds\Hydrator\Mapper\MutatorInterface;
 use Rds\Hydrator\Mapper\AccessorInterface;
 use Rds\Hydrator\Exception\HydratorException;
 use Rds\Hydrator\Mapper\Payload\NestedPayload;
-use Rds\Hydrator\Collection\MutatorsCollection;
-use Rds\Hydrator\Collection\AccessorsCollection;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
@@ -34,12 +34,12 @@ class Hydrator implements HydratorInterface
     protected $reflection;
 
     /**
-     * @var MutatorsCollection|MutatorInterface[]
+     * @var Mutators|MutatorInterface[]
      */
     private $mutators;
 
     /**
-     * @var AccessorsCollection|AccessorInterface[]
+     * @var Accessors|AccessorInterface[]
      */
     private $accessors;
 
@@ -62,9 +62,10 @@ class Hydrator implements HydratorInterface
             throw new HydratorException($e->getMessage(), $e->getCode());
         }
 
+        $this->accessors = new Accessors();
+        $this->mutators = new Mutators();
+
         $this->dispatcher = $dispatcher;
-        $this->accessors = new AccessorsCollection();
-        $this->mutators = new MutatorsCollection();
     }
 
     /**
@@ -82,14 +83,6 @@ class Hydrator implements HydratorInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClass(): string
-    {
-        return $this->reflection->getName();
     }
 
     /**

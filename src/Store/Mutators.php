@@ -7,27 +7,27 @@
  */
 declare(strict_types=1);
 
-namespace Rds\Hydrator\Collection;
+namespace Rds\Hydrator\Store;
 
 use Rds\Hydrator\Mapper\MutatorInterface;
 use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
- * Class ReadersCollection
+ * Class Mutators
  *
  * @method MutatorInterface[] getIterator()
  */
-final class MutatorsCollection extends Collection
+final class Mutators extends Store
 {
     /**
-     * @param MutatorInterface $writer
-     * @return AccessorsCollection|$this
+     * @param MutatorInterface $mutator
+     * @return Accessors|$this
      */
-    public function add($writer): CollectionInterface
+    public function add($mutator): StoreInterface
     {
-        \assert($writer instanceof MutatorInterface);
+        \assert($mutator instanceof MutatorInterface);
 
-        return parent::add($writer);
+        return parent::add($mutator);
     }
 
     /**

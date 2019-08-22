@@ -7,27 +7,27 @@
  */
 declare(strict_types=1);
 
-namespace Rds\Hydrator\Collection;
+namespace Rds\Hydrator\Store;
 
 use Rds\Hydrator\Mapper\AccessorInterface;
 use Rds\Hydrator\Mapper\Payload\PayloadInterface;
 
 /**
- * Class ReadersCollection
+ * Class Accessors
  *
  * @method AccessorInterface[] getIterator()
  */
-final class AccessorsCollection extends Collection
+final class Accessors extends Store
 {
     /**
-     * @param AccessorInterface $reader
-     * @return AccessorsCollection|$this
+     * @param AccessorInterface $accessor
+     * @return Accessors|$this
      */
-    public function add($reader): CollectionInterface
+    public function add($accessor): StoreInterface
     {
-        \assert($reader instanceof AccessorInterface);
+        \assert($accessor instanceof AccessorInterface);
 
-        return parent::add($reader);
+        return parent::add($accessor);
     }
 
     /**

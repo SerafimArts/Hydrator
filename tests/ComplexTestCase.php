@@ -9,10 +9,11 @@ declare(strict_types=1);
 
 namespace Rds\Hydrator\Tests;
 
-use Rds\Hydrator\Factory;
-use PHPUnit\Framework\Exception;
-use Rds\Hydrator\FactoryInterface;
+use Rds\Hydrator\Hydrator;
+use Rds\Hydrator\Mapper\Property;
+use Rds\Hydrator\HydratorInterface;
 use Rds\Hydrator\Tests\Models\User;
+use Rds\Hydrator\Mapper\Embeddable;
 use Rds\Hydrator\Tests\Models\Avatar;
 use PHPUnit\Framework\ExpectationFailedException;
 
@@ -22,85 +23,40 @@ use PHPUnit\Framework\ExpectationFailedException;
 class ComplexTestCase extends TestCase
 {
     /**
-     * @dataProvider factoryDataProvider
-     *
-     * @param FactoryInterface $factory
-     * @param array $payload
      * @return void
-     * @throws Exception
      * @throws ExpectationFailedException
      */
-    public function testUserIsConfigurable(FactoryInterface $factory, array $payload): void
+    public function testMutators(): void
     {
-        $user = $factory->create(User::class)->hydrate($payload);
+        $object = $this->createHydrator()->hydrate($this->payload());
 
-        $avatar = $this->access($user, 'avatar');
+        $haystack = [
+            'id'     => 42,
+            'login'  => 'Vasya',
+            'avatar' => [
+                'url'     => 'https://example.com',
+                'example' => 23,
+            ],
+        ];
 
-        $this->assertInstanceOf(User::class, $user);
-        $this->assertInstanceOf(Avatar::class, $avatar);
-
-        $this->assertSame(42, $this->access($user, 'id'));
-        $this->assertSame('Vasya', $this->access($user, 'login'));
-        $this->assertSame([
-            'a' => 42,
-            'b' => ['b' => 'Vasya'],
-            'c' => 'https://example.com',
-            'd' => ['d' => 23],
-        ], $this->access($user, 'attr'));
-
-        $this->assertSame('https://example.com', $this->access($avatar, 'url'));
-        $this->assertSame(23, $this->access($avatar, 'example'));
+        $this->assertEquals($haystack, \json_decode(\json_encode($object), true));
     }
 
     /**
-     * @dataProvider factoryDataProvider
-     *
-     * @param FactoryInterface $factory
-     * @param array $payload
-     * @return void
-     * @throws Exception
-     * @throws ExpectationFailedException
+     * @return HydratorInterface
      */
-    public function testUserIsSerializable(FactoryInterface $factory, array $payload): void
+    public function createHydrator(): HydratorInterface
     {
-        $hydrator = $factory->create(User::class);
+        $avatar = new Hydrator(Avatar::class);
+        $avatar->add(new Property('url', 'link'));
+        $avatar->add(new Property('example', 'some.any'));
 
-        $this->assertSame($payload, $hydrator->toArray($hydrator->hydrate($payload)));
-    }
+        $user = new Hydrator(User::class);
+        $user->add(new Property('id'));
+        $user->add(new Property('login', 'username'));
+        $user->add(new Embeddable('avatar', $avatar));
 
-    /**
-     * @dataProvider factoryDataProvider
-     *
-     * @param FactoryInterface $factory
-     * @param array $payload
-     * @return void
-     */
-    public function testDump(FactoryInterface $factory, array $payload): void
-    {
-        $this->expectNotToPerformAssertions();
-
-        $hydrator = $factory->create(User::class);
-
-        \dump($hydrator->hydrate($payload));
-    }
-
-    /**
-     * @return array
-     */
-    public function factoryDataProvider(): array
-    {
-        $result = [];
-
-        foreach ($this->loaders(__DIR__ . '/config') as $loader) {
-            $factory = new Factory($this->dispatcher());
-
-            $result[\get_class($loader)] = [
-                $factory->withLoader($loader),
-                $this->payload(),
-            ];
-        }
-
-        return $result;
+        return $user;
     }
 
     /**

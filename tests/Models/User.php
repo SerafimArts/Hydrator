@@ -15,22 +15,17 @@ namespace Rds\Hydrator\Tests\Models;
 class User
 {
     /**
-     * @var array
-     */
-    private $attr;
-
-    /**
      * @var int
      */
-    private $id;
+    public $id;
 
     /**
      * @var string
      */
-    private $login;
+    public $login;
 
     /**
      * @var Avatar
      */
-    private $avatar;
+    public $avatar;
 }
