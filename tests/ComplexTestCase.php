@@ -12,8 +12,8 @@ namespace Rds\Hydrator\Tests;
 use Rds\Hydrator\Hydrator;
 use Rds\Hydrator\Mapper\Property;
 use Rds\Hydrator\HydratorInterface;
-use Rds\Hydrator\Tests\Models\User;
 use Rds\Hydrator\Mapper\Embeddable;
+use Rds\Hydrator\Tests\Models\User;
 use Rds\Hydrator\Tests\Models\Avatar;
 use PHPUnit\Framework\ExpectationFailedException;
 
@@ -39,7 +39,7 @@ class ComplexTestCase extends TestCase
             ],
         ];
 
-        $this->assertEquals($haystack, \json_decode(\json_encode($object), true));
+        $this->assertSame($haystack, \json_decode(\json_encode($object), true));
     }
 
     /**

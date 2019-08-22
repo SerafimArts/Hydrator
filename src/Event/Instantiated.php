@@ -19,7 +19,7 @@ class Instantiated extends Event
      */
     public static function fillConstructor(): \Closure
     {
-        return static function (Instantiated $e) {
+        return static function (self $e): void {
             $target = $e->getTarget();
 
             if (\method_exists($target, '__construct')) {
